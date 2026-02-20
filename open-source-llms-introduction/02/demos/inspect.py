@@ -3,22 +3,22 @@ from transformers import AutoModel, AutoTokenizer
 import os
 
 # 1. Define the model name (from Hugging Face) or path to local files
-model_name = "microsoft/DialoGPT-small"  # Example model - replace with your model
-local_model_name = "microsoft/Phi-3-mini-4k-instruct"
+# model_name = "microsoft/DialoGPT-small"  # Example model - replace with your model
+# local_model_name = "microsoft/Phi-3-mini-4k-instruct"
 # Alternatively, for a local model:
-# model_name = "./path/to/your/local/model"
+model_name = "/Users/conrad/.cache/huggingface/hub/models--microsoft--Phi-3-mini-4k-instruct"
 #/Users/conrad/.cache/huggingface/hub/models--microsoft--Phi-3-mini-4k-instruct
 
 
 # 2. Create output directory for inspection results
-output_dir = "model_inspection"
-
+output_dir = "~/model_inspection"
 
 os.makedirs(output_dir, exist_ok=True)
 
 # 3. Load the model and tokenizer
 print("Loading model and tokenizer...")
 model = AutoModel.from_pretrained(model_name)
+
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # 4. Basic model information
