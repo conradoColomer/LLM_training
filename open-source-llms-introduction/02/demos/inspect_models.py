@@ -4,14 +4,14 @@ import os
 
 # 1. Define the model name (from Hugging Face) or path to local files
 # model_name = "microsoft/DialoGPT-small"  # Example model - replace with your model
-# local_model_name = "microsoft/Phi-3-mini-4k-instruct"
+model_name = "microsoft/Phi-3-mini-4k-instruct"
 # Alternatively, for a local model:
-model_name = "/Users/conrad/.cache/huggingface/hub/models--microsoft--Phi-3-mini-4k-instruct"
+# model_name = "/Users/conrad/.cache/huggingface/hub/models--microsoft--Phi-3-mini-4k-instruct"
 #/Users/conrad/.cache/huggingface/hub/models--microsoft--Phi-3-mini-4k-instruct
 
 
 # 2. Create output directory for inspection results
-output_dir = "~/model_inspection"
+output_dir = "./model_inspection"
 
 os.makedirs(output_dir, exist_ok=True)
 
