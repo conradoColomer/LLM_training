@@ -1,10 +1,23 @@
-from unsloth_mlx import FastLanguageModel
+from dotenv import load_dotenv
+from mlx_tune import FastLanguageModel
 import torch
 from datasets import load_dataset
 from trl import SFTTrainer
 from transformers import TrainingArguments
+from huggingface_hub import login
 import os
 
+
+
+# 1. Carga las variables del archivo .env
+load_dotenv()
+
+token = os.getenv("HF_TOKEN")
+
+if token:
+    login(token=token)
+else:
+    print("⚠️ No se encontró el HF_TOKEN en el archivo .env")
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name = "unsloth/Meta-Llama-3.1-8B", 
     max_seq_length = 2048,
