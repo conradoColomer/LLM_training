@@ -1,12 +1,13 @@
-from unsloth import FastLanguageModel
+from unsloth_mlx import FastLanguageModel
 import torch
 from datasets import load_dataset
 from trl import SFTTrainer
 from transformers import TrainingArguments
+import os
 
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name = "unsloth/Meta-Llama-3.1-8B", 
-    max_seq_length = 2048, 
+    max_seq_length = 2048,
     dtype = None, 
     load_in_4bit = True, 
 )
@@ -23,7 +24,18 @@ model = FastLanguageModel.get_peft_model(
     random_state = 3407,
 )
 
-dataset = load_dataset("json", data_files="globomantics_training_data.jsonl", split="train")
+# Construimos la ruta absoluta basada en lo que me pasaste
+ruta_archivo = "/Users/conrad/Documents/LLM/open-source-llms-introduction/02/demos/training_data/globomantics_training_data.jsonl"
+
+# Verificamos si existe antes de cargar
+if not os.path.exists(ruta_archivo):
+    raise FileNotFoundError(f"⚠️ ¡Error! No encontré el archivo en: {ruta_archivo}")
+
+# Ahora cargamos el dataset con la ruta segura
+dataset = load_dataset("json", data_files=ruta_archivo, split="train")
+print("✅ Dataset cargado correctamente desde la ruta absoluta.")
+
+# dataset = load_dataset("json", data_files="./training_data/globomantics_training_data.jsonl", split="train")
 
 
 def formatting_prompts_func(examples):
