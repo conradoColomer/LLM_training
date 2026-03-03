@@ -1,0 +1,14 @@
+#### Working command to train model with data set
+
+python -m mlx_lm lora \
+  --model mlx-community/Meta-Llama-3.1-8B-Instruct-4bit \
+  --train \
+  --data /Users/conrad/Documents/LLM/open-source-llms-introduction/02/demos/training_data/ \
+  --iters 100 \
+  --batch-size 1 \
+  --learning-rate 2e-4 \
+  --steps-per-report 10
+
+
+## To set a specific file name. This same name we will need to replace it then in test_globo.py
+  --adapter-path adapters_v1
