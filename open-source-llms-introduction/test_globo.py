@@ -3,9 +3,10 @@ from mlx_lm import load, generate
 # 1. Ruta al modelo base y a tus nuevos "conocimientos" (adaptadores)
 model_path = "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
 adapter_path = "adapters" # Por defecto mlx_lm guarda aquí sus resultados
+adapter_path_v2 = "adapters_v2" # Por defecto mlx_lm guarda aquí sus resultados
 
 print("Cargando modelo con esteroides de Globomantics... 🧠")
-model, tokenizer = load(model_path, adapter_path=adapter_path)
+model, tokenizer = load(model_path, adapter_path=adapter_path_v2)
 
 def preguntar_a_globo(pregunta):
     # Formateamos la pregunta para que la IA entienda el rol
