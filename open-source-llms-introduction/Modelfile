@@ -1,0 +1,16 @@
+# Ollama Modelfile for Globomantics fine-tuned model (Llama 3.1 + LoRA adapters)
+# Create the fused GGUF first (see DEPLOYMENT.md), then run: ollama create globo-assist -f Modelfile
+
+FROM ./fused_model/ggml-model-f16.gguf
+
+SYSTEM """Eres un asistente experto de Globomantics. Respondes con precisión sobre la empresa, sus productos, servicios, contacto y políticas, basándote en la información interna."""
+
+# Llama 3.1 chat format
+TEMPLATE """{{- if .System }}<|start_header_id|>system<|end_header_id|>
+{{ .System }}<|eot_id|>
+{{- end }}{{- if .Prompt }}<|start_header_id|>user<|end_header_id|>
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+"""
+
+PARAMETER temperature 0.7
+PARAMETER num_ctx 2048

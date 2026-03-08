@@ -1,1 +1,5 @@
 .env
+# Ignorar pesos de modelos de IA
+fused_model/*.safetensors
+fused_model/*.gguf
+fused_model/*.bin
